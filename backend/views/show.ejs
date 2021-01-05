@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+<div class="container">
+<table id="myTable'" class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">المحطة</th>
+        <th scope="col">الكود</th>
+        <th scope="col">الإسم</th>
+        <th scope="col">م</th>
+      </tr>
+    </thead>
+    <tbody>
+<% for(var i = 0; i<data.length; i++){%>
+
+
+          <tr>
+            <th scope="row"><%= data[i]['المحطة'] %></th>
+            <td><%= data[i]['الكود'] %></td>
+            <td><%= data[i]['الإسم'] %></td>
+            <td><%= data[i]['م'] %></td>
+          </tr>
+<%}%>
+    </tbody>
+</table>
+</div>
+<%- include('partials/footer') %>
+

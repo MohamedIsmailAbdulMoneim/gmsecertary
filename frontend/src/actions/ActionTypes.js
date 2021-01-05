@@ -1,0 +1,12 @@
+export const newPost = "NEW-POSTS";
+export const fetchEgas = "FETCH-EGAS";
+export const sliceEgas = "SLICE-EGAS";
+export const fetchInt = "FETCH-INT";
+export const makeItNull = "MAKE-NULL";
+export const test = "TEST";
+export const sliceIntDocs = "SLICE-INT";
+export const postType = "POST-TYPE";
+export const searchEValue = "SEARCHE-VALUE";
+export const searchIValue = "SEARCHI-VALUE";
+export const pendingPost = "PENDING-POST";
+export const sliceWaitingPost = "SLICE-WAIT";
