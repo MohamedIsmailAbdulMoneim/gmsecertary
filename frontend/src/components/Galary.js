@@ -3,7 +3,7 @@ import {
   getPost,
   getInt,
   sliceEPost,
-  searchEPost,
+  searchPost,
   waitingPost,
 } from "../actions/Actions";
 
@@ -40,7 +40,7 @@ class Galary extends React.Component {
   }
 
   render() {
-    console.log(this.props.localdata);
+    console.log(this.props.pending.map);
 
     let btnNum =
       this.props.static === "egas" && this.state.type === "export"
@@ -236,7 +236,7 @@ class Galary extends React.Component {
               ))
             : this.props.static === "search" &&
               this.props.searchEData.length > 0
-            ? this.props.searchEData.slice(0, 15).map((post) => (
+            ? this.props.searchEData.map((post) => (
                 <div className="col-lg-4 items">
                   <Link to={`/egasdetails/${post.outdocs_id}/${post.bais}`}>
                     <img
@@ -257,30 +257,6 @@ class Galary extends React.Component {
                     </p>
                   </Link>
                   <div></div>
-                </div>
-              ))
-            : this.props.static === "search" &&
-              this.props.searchIData.length > 0
-            ? this.props.searchIData.slice(0, 15).map((post) => (
-                <div className="col-lg-4 items">
-                  <Link to={`/egasdetails/${post.intdocs_id}/${post.bais}`}>
-                    <img
-                      name="img"
-                      id={post.subject}
-                      style={{ height: "300px", width: "300px" }}
-                      className="img-thumbnail"
-                      src={`data:image/png;base64,${post.image}`}
-                    />
-                  </Link>
-                  <Link
-                    to={`/egasdetails/${post.outdocs_id || post.intdocs_id}/${
-                      post.bais
-                    }`}
-                  >
-                    <p style={{ width: "250px" }} name={post.subject}>
-                      {post.subject}
-                    </p>
-                  </Link>
                 </div>
               ))
             : this.props.static === "pending"
@@ -343,7 +319,7 @@ export default connect(mapStateToProps, {
   sliceEPost,
   getPost,
   getInt,
-  searchEPost,
+  searchPost,
   waitingPost,
 })(Galary);
 

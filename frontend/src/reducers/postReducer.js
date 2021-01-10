@@ -7,8 +7,7 @@ import {
   test,
   postType,
   makeItNull,
-  searchEValue,
-  searchIValue,
+  searchValue,
   pendingPost,
   sliceWaitingPost,
   localSliced,
@@ -78,15 +77,10 @@ export default function (state = initialState, action) {
         sliced: action.payload.sliced
       };
 
-    case searchEValue:
+    case searchValue:
       return {
         ...state,
         searchEData: action.payload.data,
-      };
-    case searchIValue:
-      return {
-        ...state,
-        searchIData: action.payload.data,
       };
 
     case pendingPost:

@@ -7,8 +7,7 @@ import {
   makeItNull,
   postType,
   test,
-  searchEValue,
-  searchIValue,
+  searchValue,
   pendingPost,
   sliceWaitingPost,
 } from "../actions/ActionTypes";
@@ -94,21 +93,12 @@ export const sliceWaiting = (pageNumber) => (dispatch) => {
   });
 };
 
-export const searchEPost = (value) => (dispatch) => {
+export const searchPost = (value) => (dispatch) => {
   console.log("called");
-  axios.get(`http://localhost:3000/searchEPost/${value}`).then((res) => {
+  axios.get(`http://localhost:3000/searchPost/${value}`).then((res) => {
     console.log(res.data);
     dispatch({
-      type: searchEValue,
-      payload: { data: res.data },
-    });
-  });
-};
-
-export const searchIPost = (value) => (dispatch) => {
-  axios.get(`http://localhost:3000/searchIPost/${value}`).then((res) => {
-    dispatch({
-      type: searchIValue,
+      type: searchValue,
       payload: { data: res.data },
     });
   });

@@ -18,7 +18,6 @@ app.use(
     credentials: true,
   })
 );
-
 var db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -105,41 +104,27 @@ app.get("/intdocs", function (req, res) {
   });
 });
 
-app.get("/searchEPost/:subject", function (req, res) {
+app.get("/searchPost/:subject", function (req, res) {
   let subject = req.params.subject;
   let query = `SELECT * FROM outdocs
-  JOIN outdocs_image ON outdocs.id = outdocs_image.outdocs_id WHERE subject LIKE '%${subject}%' GROUP BY outdocs.id; `;
-  db.query(query, function (err, details) {
-    if (err) {
-      console.log(err);
-    } else {
-      for (let detail of details) {
-        if (detail.image) {
-          detail.image = detail.image.toString("base64");
-        }
-      }
-      res.send(details);
-    }
-  });
-});
-
-app.get("/searchIPost/:subject", function (req, res) {
-  let subject = req.params.subject;
-  let query = `SELECT * FROM intdocs
+  JOIN outdocs_image ON outdocs.id = outdocs_image.outdocs_id WHERE subject LIKE '%${subject}%' GROUP BY outdocs.id;
+  SELECT * FROM intdocs
   JOIN intdocs_image ON intdocs.id = intdocs_image.intdocs_id WHERE subject LIKE '%${subject}%' GROUP BY intdocs.id; `;
   db.query(query, function (err, details) {
     if (err) {
       console.log(err);
     } else {
-      for (let detail of details) {
+      var searchPostConcat = details[0].concat(details[1]);
+      for (let detail of searchPostConcat) {
         if (detail.image) {
           detail.image = detail.image.toString("base64");
         }
       }
-      res.send(details);
+      res.send(searchPostConcat);
     }
   });
 });
+
 
 app.get("/detailedPost/:id/:bais", function (req, res) {
   const id = req.params.id;

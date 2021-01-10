@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import Logo from "./NGV.jpg";
-import { searchEPost, searchIPost, testTry } from "../actions/Actions";
+import { searchPost, testTry } from "../actions/Actions";
 
 class Header extends React.Component {
   constructor(props) {
@@ -18,8 +18,7 @@ class Header extends React.Component {
   };
 
   handleClick = (e) => {
-    this.props.searchEPost(this.state.value);
-    this.props.searchIPost(this.state.value);
+    this.props.searchPost(this.state.value);
   };
 
   handleExcelFile = () => {
@@ -159,6 +158,6 @@ class Header extends React.Component {
 const mapStateToProps = (state) => {
   return { posts: state.posts.items, length: state.posts.length };
 };
-export default connect(mapStateToProps, { searchEPost, searchIPost, testTry, })(Header);
+export default connect(mapStateToProps, { searchPost, testTry, })(Header);
 
 // export default Header;
