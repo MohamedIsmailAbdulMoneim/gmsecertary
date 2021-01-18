@@ -4,7 +4,6 @@ dotenv.config({path: './config/config.env'})
 var app = express();
 var bodyParser = require("body-parser");
 var session = require("express-session");
-var mysql = require("mysql");
 var cors = require("cors");
 const e = require("express");
 const fileUpload = require("express-fileupload");
@@ -12,6 +11,16 @@ var fs = require("fs");
 var InsertQuery = require("mysql-insert-multiple");
 var excel = require("excel4node");
 var Excl = require("exceljs");
+const db = require("./config/db")
+
+db.connect(function (err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Database connected");
+  }
+});
+
 
 app.use(fileUpload());
 app.use(
