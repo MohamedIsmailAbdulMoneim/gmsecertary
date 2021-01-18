@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import Logo from "./NGV.jpg";
-import { searchPost, testTry } from "../actions/Actions";
+import { searchPost, testTry, getPost, getInt } from "../actions/Actions";
 
 class Header extends React.Component {
   constructor(props) {
@@ -10,6 +10,10 @@ class Header extends React.Component {
     this.state = { value: null };
   }
 
+  componentDidMount() {
+    this.props.getPost();
+    this.props.getInt();
+  }
 
   handleSearchVal = (e) => {
     this.setState({
@@ -20,6 +24,18 @@ class Header extends React.Component {
   handleClick = (e) => {
     this.props.searchPost(this.state.value);
   };
+
+  handleJsSearch = (e) => {
+    let concatOut = this.props.posts[0].concat(this.props.posts[1])
+    let concatIn = this.props.local[0].concat(this.props.local[1])
+    let concatOutIn = concatOut.concat(concatIn)
+    console.log(concatOutIn.indexOf(this.state.value))
+    // for(let i = 0; i < concatOutIn.length; i++){
+    //   if(concatOutIn.indexOf(this.state.value) > -1){
+    //     this.props.searchPost(this.state.value);
+    //   }
+    // }
+  }
 
   handleExcelFile = () => {
     const arr = []
@@ -130,6 +146,7 @@ class Header extends React.Component {
                 this.handleClick(e);
                 this.props.testTry(e);
                 this.handleSearchVal(e);
+                this.handleJsSearch(e);
               }}
               name="search"
               class="form-control mr-sm-2"
@@ -156,8 +173,8 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { posts: state.posts.items, length: state.posts.length };
+  return { posts: state.posts.items, length: state.posts.length, local: state.posts.localdata };
 };
-export default connect(mapStateToProps, { searchPost, testTry, })(Header);
+export default connect(mapStateToProps, { searchPost, testTry, getPost, getInt })(Header);
 
 // export default Header;

@@ -94,15 +94,20 @@ export const sliceWaiting = (pageNumber) => (dispatch) => {
 };
 
 export const searchPost = (value) => (dispatch) => {
-  console.log("called");
   axios.get(`http://localhost:3000/searchPost/${value}`).then((res) => {
-    console.log(res.data);
     dispatch({
       type: searchValue,
       payload: { data: res.data },
     });
   });
 };
+
+// export const searchPost = (value) => (dispatch) => {
+//     dispatch({
+//       type: searchValue,
+//       payload: { data: value },
+//     });
+// };
 
 export const testTry = (e) => (dispatch) => {
   

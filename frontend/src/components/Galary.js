@@ -26,6 +26,8 @@ class Galary extends React.Component {
     };
   }
 
+
+
   handelSort = (e) => {
     this.setState({
       type: e.target.getAttribute("name"),
@@ -40,8 +42,6 @@ class Galary extends React.Component {
   }
 
   render() {
-    console.log(this.props.pending.map);
-
     let btnNum =
       this.props.static === "egas" && this.state.type === "export"
         ? Math.ceil(this.props.fLength / 15)
@@ -238,7 +238,7 @@ class Galary extends React.Component {
               this.props.searchEData.length > 0
             ? this.props.searchEData.map((post) => (
                 <div className="col-lg-4 items">
-                  <Link to={`/egasdetails/${post.outdocs_id}/${post.bais}`}>
+                  <Link to={`/egasdetails/${post.outdocs_id || post.intdocs_id}/${post.bais}`}>
                     <img
                       name="img"
                       id={post.subject}
